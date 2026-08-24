@@ -25,7 +25,7 @@
  * This is a greedy min-cash-flow approach. It does not guarantee the
  * mathematically minimum number of transactions in every case (that's an
  * NP-hard problem in general), but it performs very well in practice and
- * runs in O(n log n), which is what real products like Splitwise use.
+ * runs in O(n log n), which is standard for group financial engines.
  *
  * @param {Object} netBalances - map of userId -> net balance (number)
  * @returns {Array<{from: number, to: number, amount: number}>}
