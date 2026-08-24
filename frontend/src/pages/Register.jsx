@@ -34,9 +34,7 @@ export default function Register() {
         
         {/* Brand */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-slate-900 text-white font-display font-extrabold text-3xl flex items-center justify-center mx-auto shadow-md">
-            S.
-          </div>
+          <img src="/logo.png" alt="SettleUp Logo" className="w-28 h-28 object-contain mx-auto drop-shadow-md" />
           <h1 className="font-display font-extrabold text-3xl text-slate-900 tracking-tight">
             Create Account
           </h1>

@@ -34,9 +34,9 @@ export default function Shell({ children }) {
         <div className="flex items-center justify-center">
           <Link
             to="/"
-            className="w-12 h-12 rounded-2xl bg-white text-slate-900 font-display font-extrabold text-2xl flex items-center justify-center shadow-md hover:scale-105 transition-all"
+            className="w-13 h-13 rounded-2xl bg-white p-1 flex items-center justify-center shadow-md hover:scale-105 transition-all overflow-hidden"
           >
-            S.
+            <img src="/logo.png" alt="SettleUp Logo" className="w-full h-full object-contain" />
           </Link>
         </div>
 
