@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #E4ECF0;
+    --canvas-bg: #F8FAFC;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Reference UI Pastel Tokens */
+    --sage-pastel: #CBE3DB;
+    --sage-text: #13382C;
+
+    --pink-pastel: #F7C9D9;
+    --pink-text: #4C1D2A;
+
+    --yellow-pastel: #FDE68A;
+    --yellow-text: #451A03;
+
+    --lavender-pastel: #E2DBF6;
+    --lavender-text: #2E1065;
+
+    --mint-pastel: #D1FAE5;
+    --mint-text: #064E3B;
+
+    --sky-pastel: #E0F2FE;
+    --sky-text: #0C4A6E;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  background-image: radial-gradient(circle at 10% 20%, rgba(203, 227, 219, 0.4) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(247, 201, 217, 0.4) 0%, transparent 40%);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 1.5rem;
+  }
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reference UI Cards */
+.inspo-card {
+  border-radius: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inspo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.08);
+}
+
+/* Round Arrow Badge Button */
+.arrow-circle-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arrow-circle-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-pop-in {
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+::selection {
+  background-color: #F7C9D9;
+  color: #0F172A;
+}
+
+:focus-visible {
+  outline: 2px solid #0F172A;
+  outline-offset: 2px;
+}
