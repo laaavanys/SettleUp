@@ -569,7 +569,7 @@ export default function Dashboard() {
               <span className="text-xs font-bold uppercase tracking-wider block opacity-80">Debt Simplification</span>
               <p className="font-display font-bold text-lg">Smart Graph Minimization Active</p>
               <p className="text-xs font-semibold leading-relaxed opacity-90">
-                Instead of N*(N-1) individual payments, Ledger computes net balance vectors to minimize cash transfers between members.
+                Instead of N*(N-1) individual payments, SettleUp computes net balance vectors to minimize cash transfers between members.
               </p>
             </div>
 

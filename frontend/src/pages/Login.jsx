@@ -33,11 +33,11 @@ export default function Login() {
         
         {/* Brand */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-[#561C24] text-[#E8D8C4] font-display font-extrabold text-3xl flex items-center justify-center mx-auto shadow-md">
-            L.
+          <div className="w-14 h-14 rounded-2xl bg-slate-900 text-white font-display font-extrabold text-3xl flex items-center justify-center mx-auto shadow-md">
+            S.
           </div>
-          <h1 className="font-display font-extrabold text-3xl text-[#561C24] tracking-tight">
-            Welcome to Ledger
+          <h1 className="font-display font-extrabold text-3xl text-slate-900 tracking-tight">
+            Welcome to SettleUp
           </h1>
           <p className="text-xs font-semibold text-[#6E5B55]">
             Sign in to manage group expenses and balances

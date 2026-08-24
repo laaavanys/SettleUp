@@ -36,7 +36,7 @@ export default function Shell({ children }) {
             to="/"
             className="w-12 h-12 rounded-2xl bg-white text-slate-900 font-display font-extrabold text-2xl flex items-center justify-center shadow-md hover:scale-105 transition-all"
           >
-            L.
+            S.
           </Link>
         </div>
 
@@ -62,7 +62,7 @@ export default function Shell({ children }) {
                 ? 'bg-slate-800 text-white shadow-md scale-105'
                 : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
             }`}
-            title="Ledger Detail"
+            title="SettleUp Detail"
           >
             <BookOpen size={22} />
           </button>
