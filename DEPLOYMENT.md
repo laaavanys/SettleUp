@@ -45,9 +45,11 @@ git push -u origin main
 5. Add Environment Variables:
    - `NODE_ENV`: `production`
    - `PORT`: `4000`
-   - `JWT_SECRET`: Generate a random string (e.g., use online generator)
-   - `DB_PATH`: `/var/data/app.db`
+   - `JWT_SECRET`: Generate a random string (e.g., use online generator) — the blueprint auto-generates this for you
+   - `GEMINI_API_KEY`: (Optional, for AI features)
 6. Click **Create Web Service**
+
+Note: on Render's free plan there's no persistent disk, so the SQLite database (`backend/data/app.db`) resets whenever the service redeploys or restarts. Fine for a demo; for real data, upgrade the backend to a paid plan and attach a Disk mounted at a path passed via `DB_PATH`.
 
 #### Deploy Frontend (React)
 1. Click **"New +"** → **"Static Site"**
@@ -66,8 +68,8 @@ Set up these environment variables in Render dashboard:
 
 ### Backend
 - `NODE_ENV`: `production`
-- `JWT_SECRET`: Generate a secure random string (32+ characters)
-- `GOOGLE_API_KEY`: (Optional, for AI features)
+- `JWT_SECRET`: Generate a secure random string (32+ characters) — auto-generated when using the `render.yaml` blueprint
+- `GEMINI_API_KEY`: (Optional, for AI features)
 
 ### Frontend
 - `VITE_API_URL`: URL of your deployed backend API

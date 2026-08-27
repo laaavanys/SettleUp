@@ -10,8 +10,10 @@ services:
         value: production
       - key: PORT
         value: 4000
-      - key: DB_PATH
-        value: /var/data/app.db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
 
   - type: web
     name: settleup-frontend
