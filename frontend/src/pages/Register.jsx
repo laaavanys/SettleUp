@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Lock, Mail, User } from 'lucide-react';
-import api from '../lib/api';
 import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
@@ -10,7 +9,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
