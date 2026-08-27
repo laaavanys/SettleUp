@@ -197,6 +197,12 @@ router.get('/insights/:groupId', async (req, res) => {
     if (!groupId) {
       return res.status(400).json({ error: 'Invalid group ID' });
     }
+    const isMember = db
+      .prepare('SELECT 1 FROM group_members WHERE group_id = ? AND user_id = ?')
+      .get(groupId, req.userId);
+    if (!isMember) {
+      return res.status(403).json({ error: 'You are not a member of this group' });
+    }
 
     const expenses = db
       .prepare('SELECT description, amount, category, paid_by FROM expenses WHERE group_id = ?')
