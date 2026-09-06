@@ -2,6 +2,7 @@ const express = require('express');
 const { z } = require('zod');
 const db = require('../db');
 const { requireAuth } = require('../middleware/auth');
+const { sendGroupInviteEmail, sendAddedToGroupEmail } = require('../utils/email');
 
 const router = express.Router();
 router.use(requireAuth);
@@ -87,6 +88,9 @@ router.post('/:id/members', (req, res) => {
   }
 
   const email = parsed.data.email.toLowerCase();
+  const group = db.prepare('SELECT name FROM groups WHERE id = ?').get(groupId);
+  const inviter = db.prepare('SELECT name FROM users WHERE id = ?').get(req.userId);
+
   const user = db.prepare('SELECT id, name, email FROM users WHERE LOWER(email) = ?').get(email);
   if (!user) {
     const existingInvite = db
@@ -100,12 +104,15 @@ router.post('/:id/members', (req, res) => {
         req.userId,
         'pending'
       );
+      sendGroupInviteEmail({ to: email, groupName: group.name, inviterName: inviter.name }).catch((err) =>
+        console.error('sendGroupInviteEmail failed:', err.message)
+      );
     }
 
     return res.status(202).json({
       status: 'invited',
       email,
-      message: 'Invite sent. Once they create an account, they will be added automatically.',
+      message: 'Invite email sent. Once they create an account, they will be added automatically.',
     });
   }
 
@@ -116,6 +123,10 @@ router.post('/:id/members', (req, res) => {
   db.prepare('INSERT INTO group_members (group_id, user_id) VALUES (?, ?)').run(
     groupId,
     user.id
+  );
+
+  sendAddedToGroupEmail({ to: user.email, groupName: group.name, inviterName: inviter.name }).catch((err) =>
+    console.error('sendAddedToGroupEmail failed:', err.message)
   );
 
   res.status(201).json({ ...user, status: 'added' });

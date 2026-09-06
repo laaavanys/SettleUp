@@ -47,6 +47,9 @@ git push -u origin main
    - `PORT`: `4000`
    - `JWT_SECRET`: Generate a random string (e.g., use online generator) — the blueprint auto-generates this for you
    - `GEMINI_API_KEY`: (Optional, for AI features)
+   - `RESEND_API_KEY`: Get a free key at [resend.com](https://resend.com) — without it, invite/notification emails are silently skipped instead of failing
+   - `EMAIL_FROM`: `SettleUp <onboarding@resend.dev>` (only use your own address once you've verified a domain on Resend)
+   - `APP_URL`: your deployed frontend URL, e.g. `https://settleup-frontend.onrender.com` (used to build links inside emails)
 6. Click **Create Web Service**
 
 Note: on Render's free plan there's no persistent disk, so the SQLite database (`backend/data/app.db`) resets whenever the service redeploys or restarts. Fine for a demo; for real data, upgrade the backend to a paid plan and attach a Disk mounted at a path passed via `DB_PATH`.
@@ -70,6 +73,9 @@ Set up these environment variables in Render dashboard:
 - `NODE_ENV`: `production`
 - `JWT_SECRET`: Generate a secure random string (32+ characters) — auto-generated when using the `render.yaml` blueprint
 - `GEMINI_API_KEY`: (Optional, for AI features)
+- `RESEND_API_KEY`: (Optional, but required for invite/notification emails to actually send)
+- `EMAIL_FROM`: (Optional, defaults to `SettleUp <onboarding@resend.dev>`)
+- `APP_URL`: Your deployed frontend URL — used to build links inside emails
 
 ### Frontend
 - `VITE_API_URL`: URL of your deployed backend API

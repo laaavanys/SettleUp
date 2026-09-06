@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { z } = require('zod');
 const db = require('../db');
 const { signToken } = require('../middleware/auth');
+const { sendAddedToGroupEmail } = require('../utils/email');
 
 const router = express.Router();
 
@@ -35,7 +36,13 @@ router.post('/register', (req, res) => {
     .run(name, email, passwordHash);
 
   const pendingInvites = db
-    .prepare('SELECT group_id, invited_by FROM group_invites WHERE email = ? AND status = ?')
+    .prepare(
+      `SELECT gi.group_id, g.name as group_name, u.name as inviter_name
+       FROM group_invites gi
+       JOIN groups g ON g.id = gi.group_id
+       JOIN users u ON u.id = gi.invited_by
+       WHERE gi.email = ? AND gi.status = ?`
+    )
     .all(email.toLowerCase(), 'pending');
 
   for (const invite of pendingInvites) {
@@ -52,6 +59,10 @@ router.post('/register', (req, res) => {
 
     db.prepare('UPDATE group_invites SET status = ? WHERE group_id = ? AND email = ?')
       .run('accepted', invite.group_id, email.toLowerCase());
+
+    sendAddedToGroupEmail({ to: email, groupName: invite.group_name, inviterName: invite.inviter_name }).catch(
+      (err) => console.error('sendAddedToGroupEmail failed:', err.message)
+    );
   }
 
   const token = signToken(result.lastInsertRowid);
