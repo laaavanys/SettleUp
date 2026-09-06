@@ -47,8 +47,8 @@ git push -u origin main
    - `PORT`: `4000`
    - `JWT_SECRET`: Generate a random string (e.g., use online generator) — the blueprint auto-generates this for you
    - `GEMINI_API_KEY`: (Optional, for AI features)
-   - `RESEND_API_KEY`: Get a free key at [resend.com](https://resend.com) — without it, invite/notification emails are silently skipped instead of failing
-   - `EMAIL_FROM`: `SettleUp <onboarding@resend.dev>` (only use your own address once you've verified a domain on Resend)
+   - `SMTP_USER` / `SMTP_PASS`: Free Gmail SMTP, no card needed — turn on 2-Step Verification on your Google Account, then generate an App Password at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) and use it as `SMTP_PASS` (not your normal Gmail password). Without these, invite/notification emails are silently skipped instead of failing
+   - `EMAIL_FROM`: `SettleUp <your-gmail-address@gmail.com>`
    - `APP_URL`: your deployed frontend URL, e.g. `https://settleup-frontend.onrender.com` (used to build links inside emails)
 6. Click **Create Web Service**
 
@@ -73,8 +73,8 @@ Set up these environment variables in Render dashboard:
 - `NODE_ENV`: `production`
 - `JWT_SECRET`: Generate a secure random string (32+ characters) — auto-generated when using the `render.yaml` blueprint
 - `GEMINI_API_KEY`: (Optional, for AI features)
-- `RESEND_API_KEY`: (Optional, but required for invite/notification emails to actually send)
-- `EMAIL_FROM`: (Optional, defaults to `SettleUp <onboarding@resend.dev>`)
+- `SMTP_USER` / `SMTP_PASS`: (Optional, but required for invite/notification emails to actually send — free Gmail App Password, no card)
+- `EMAIL_FROM`: (Optional, defaults to `SMTP_USER`)
 - `APP_URL`: Your deployed frontend URL — used to build links inside emails
 
 ### Frontend

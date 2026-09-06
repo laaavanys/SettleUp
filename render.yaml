@@ -14,10 +14,12 @@ services:
         generateValue: true
       - key: GEMINI_API_KEY
         sync: false
-      - key: RESEND_API_KEY
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
         sync: false
       - key: EMAIL_FROM
-        value: "SettleUp <onboarding@resend.dev>"
+        sync: false
       - key: APP_URL
         value: https://settleup-frontend.onrender.com
 
